@@ -93,11 +93,16 @@ public class NBody {
 			}
 			// TODO: loop over all bodies and call update
 			// with dt and corresponding xforces, yforces values
+			for(int i = 0; i < bodies.length; i++) {
+				bodies[i].update(dt, xforces[i], yforces[i]);
+			}
 			
 			StdDraw.picture(0,0,"images/starfield.jpg");
 			
 			// TODO: loop over all bodies and call draw on each one
-			
+			for(Body b:bodies) {
+				b.draw();
+			}
 			StdDraw.show(10);
 		}
 		
