@@ -21,13 +21,13 @@ public class NBody {
 	public static double readRadius(String fname) throws FileNotFoundException  {
 		Scanner s = new Scanner(new File(fname));
 	
-		// TODO: read values at beginning of file to
-		// find the radius
+		int temp = s.nextInt();
+		double radius = s.nextDouble();
 		
 		s.close();
 		
 		// TODO: return radius read
-		return 0;	
+		return radius;	
 	}
 	
 	/**
@@ -41,20 +41,27 @@ public class NBody {
 		
 			Scanner s = new Scanner(new File(fname));
 			
-			// TODO: read # bodies, create array, ignore radius
-			int nb = 0; // # bodies to be read
+			int nb = s.nextInt(); // # bodies to be read
+			Body[] bodies = new Body[nb];
+			double temprad = s.nextDouble();
 			
 			for(int k=0; k < nb; k++) {
-				
-				// TODO: read data for each body
-				// construct new body object and add to array
+				double xp = s.nextDouble();
+				double yp = s.nextDouble();
+				double xv = s.nextDouble();
+				double yv = s.nextDouble();
+				double m = s.nextDouble();
+				String name = s.next();
+				Body x = new Body(xp, yp, xv, yv, m, name);
+				bodies[k] = x;
 			}
 			
 			s.close();
 			
 			// TODO: return array of body objects read
-			return null;
+			return bodies;
 	}
+	
 	public static void main(String[] args) throws FileNotFoundException{
 		double totalTime = 157788000.0;
 		double dt = 25000.0;
@@ -76,10 +83,14 @@ public class NBody {
 			
 			// TODO: create double arrays xforces and yforces
 			// to hold forces on each body
-			
+			double[] xforces = new double[bodies.length];
+			double[] yforces = new double[bodies.length];
 			// TODO: loop over all bodies, calculate
 			// net forces and store in xforces and yforces
-			
+			for(int i = 0; i < bodies.length; i++) {
+				xforces[i] = bodies[i].calcNetForceExertedByX(bodies);
+				yforces[i] = bodies[i].calcNetForceExertedByY(bodies);
+			}
 			// TODO: loop over all bodies and call update
 			// with dt and corresponding xforces, yforces values
 			

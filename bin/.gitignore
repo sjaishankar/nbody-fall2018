@@ -1,1 +1,9 @@
-/Body.class
+/StdDraw.class
+/TestBodyConstructor.class
+/TestCalcDistance.class
+/TestCalcForceExertedBy.class
+/TestCalcForceExertedByXY.class
+/TestCalcNetForceExertedByXY.class
+/TestReadBodies.class
+/TestReadRadius.class
+/TestUpdate.class
