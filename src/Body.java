@@ -53,9 +53,9 @@ public class Body {
 	
 	public double calcNetForceExertedByY(Body [] bodies) {
 		double netFY = 0.0;
-		for(int i = 0; i < bodies.length - 1; i++) {
-			if(! bodies[i].equals(this)) {
-				netFY += calcForceExertedByY(bodies[i]);
+		for(Body b:bodies) {
+			if(! b.equals(this)) {
+				netFY += calcForceExertedByY(b);
 			}
 		}
 		return netFY;
