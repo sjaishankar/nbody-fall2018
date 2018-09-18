@@ -25,22 +25,27 @@ public class Body {
 		myFileName = fileName;
 	}
 	
+	// Calculates distance between two planets
 	public double calcDistance(Body b) {
 		return Math.sqrt(Math.pow(myXPos - b.myXPos, 2.0) + Math.pow(myYPos - b.myYPos, 2.0));
 	}
 	
+	//Calculates the force exerted by the parameter Body p on the local Body object
 	public double calcForceExertedBy(Body p) {
 		return (6.67*1e-11)*(p.myMass*myMass)/(calcDistance(p)*calcDistance(p));
 	}
 	
+	//Calculates x-direction force exerted by Body p on local Body object
 	public double calcForceExertedByX(Body p) {
 		return calcForceExertedBy(p)*(p.myXPos - myXPos)/(calcDistance(p));
 	}
 	
+	//Calculates y-direction force exerted by Body p on local Body object
 	public double calcForceExertedByY(Body p) {
 		return calcForceExertedBy(p)*(p.myYPos - myYPos)/(calcDistance(p));
 	}
 	
+	//Calculates x-direction net force exerted by all other bodies in system on local Body object
 	public double calcNetForceExertedByX(Body [] bodies) {
 		double netFX = 0.0;
 		for(Body b:bodies) {
@@ -51,6 +56,7 @@ public class Body {
 		return netFX;
 	}
 	
+	//Calculates y-direction net force exerted by all other bodies in system on local Body object
 	public double calcNetForceExertedByY(Body [] bodies) {
 		double netFY = 0.0;
 		for(Body b:bodies) {
@@ -61,6 +67,8 @@ public class Body {
 		return netFY;
 	}
 	
+	/*Changes values of x-position and velocity and y-position and velocity based on dt and calculated 
+	 * xforce and yforce in main method that calls calcNetForceExertedBy methods from Body class */
 	public void update(double deltaT, double xforce, double yforce) {
 		double ax = xforce/myMass;
 		double ay = yforce/myMass;
@@ -79,6 +87,7 @@ public class Body {
 		StdDraw.picture(myXPos, myYPos, "images/"+myFileName);
 	}
 	
+	//The next 6 methods access the instance field values
 	public double getX() {
 		return myXPos;
 	}
